@@ -1,5 +1,8 @@
 from django.contrib import admin
 from django.urls import path
+
+from .views.payment import Payment
+from .views.confirm import Confirm
 from .views.home import Index , store
 from .views.signup import Signup
 from .views.login import Login , logout
@@ -19,5 +22,7 @@ urlpatterns = [
     path('cart', auth_middleware(Cart.as_view()) , name='cart'),
     path('check-out', CheckOut.as_view() , name='checkout'),
     path('orders', auth_middleware(OrderView.as_view()), name='orders'),
+    path('payment', Payment.as_view(), name='payment'),
+    path('confirm',Confirm.as_view(), name='confirm')
 
 ]
