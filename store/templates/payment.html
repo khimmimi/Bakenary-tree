@@ -1,19 +1,130 @@
 {% extends 'base.html' %}
-
-
 {% block content %}
 {% load cart %}
 {% load custom_filter %}
+
+<Script>
+  function unlock() {
+    document.getElementById('lock').disabled = false;
+  }
+</Script>
+
+<div class="container">
+  <div class="border rounded p-4 m-4">
+  <p1 class="display-4 pl-4 ml-4">Payment</p1>
+  <hr>
+	<table class="bank_table" cellpadding="5" cellspacing="0">
+		<thead>
+			<tr>
+				<th width="30"></th>
+				<th width="20"></th>
+				<th width="130">ธนาคาร</th>
+				<th width="130">สาขา</th>
+				<th width="140">เลขที่บัญชี</th>
+				<th width="120">ประเภทบัญชี</th>
+				<th width="230">ชื่อบัญชี</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr bid="102">
+				<td></td>
+				<td class="enone"><img src="https://www.lnwshop.com/system/application/modules/lnwhost/_images/bank/kbank.gif" width="16" /></td>
+				<td class="enone">ธนาคารกสิกรไทย</td>
+				<td class="enone"><b>สีลม</b></td>
+				<td class="enone">789-2-31337-0</td>
+				<td class="enone">ออมทรัพย์</td>
+				<td class="enone">Bakenary Tree Inc.</td>
+			</tr>
+			<tr bid="113">
+				<td></td>
+				<td class="enone"><img src="https://www.lnwshop.com/system/application/modules/lnwhost/_images/bank/scb.gif" width="16" /></td>
+				<td class="enone">ธนาคารไทยพาณิชย์</td>
+				<td class="enone"><b>สยาม</b></td>
+				<td class="enone">420-6-9xxxx-x</td>
+				<td class="enone">เดินสะพัด</td>
+				<td class="enone">Bakenary Tree Inc.</td>
+			</tr>
+			<tr bid="114">
+				<td></td>
+				<td class="enone"><img src="https://www.lnwshop.com/system/application/modules/lnwhost/_images/bank/bbl.gif" width="16" /></td>
+				<td class="enone">ธนาคารกรุงเทพ</td>
+				<td class="enone"><b>สำนักงานใหญ่สีลม</b></td>
+				<td class="enone">101-3-xxxxx-x</td>
+				<td class="enone">ออมทรัพย์</td>
+				<td class="enone">Bakenary Tree Inc.</td>
+			</tr>
+			<tr bid="115">
+				<td></td>
+				<td class="enone"><img src="https://www.lnwshop.com/system/application/modules/lnwhost/_images/bank/ktb.gif" width="16" /></td>
+				<td class="enone">ธนาคารกรุงไทย</td>
+				<td class="enone"><b>สีลม</b></td>
+				<td class="enone">230-1-261xx-x</td>
+				<td class="enone">กระแสรายวัน</td>
+				<td class="enone">Bakenary Tree Inc.</td>
+			</tr>
+		</tbody>
+	</table>
+
+<br />
+<br />
+
 <style>
   p {text-align: center;}
   h1 {text-align: center;}
+  p1{text-align: left;
+    font-size: 30px;
+  }
   </style>
-<h1>{{products|total_cart_price:request.session.cart|currency}}</h1>
-<p>Click on the "Choose File" button to upload a file:</p>
+  <table class="payment_table" cellpadding="5" cellspacing="0" action="/payment" method="POST" enctype="multipart/form-data">
+    
+    <thead>
+      <tr>
+        <th colspan="2" style="">รายละเอียดการโอนเงิน</th>
+      </tr>
+    </thead>
+    <tr>
+      <td class="left">จำนวนเงินที่โอนเข้าบัญชี <b style="color: red;">*</b></td>
+      <td><input id="idInputPaymentAmount" type="text" name="amount" style="text-align:right" value="{{payslip.total_price}}" size="12" tabindex="5"  disabled> บาท</td>
+    </tr>
+    <!--
+    <tr>
+      <td class="left">วันที่โอน <b style="color: red;">*</b></td>
+      <td>
+        <form action="/payment" method="POST" enctype="multipart/form-data">
+          {% csrf_token %}
+        <input type="date" name="payment_date" id="datepicker" size="12"/> 
+      </form>
+      </td>
+    </tr>
+    <tr id="id_payment_time_row">
+      <td class="left">เวลาที่โอน <b style="color: red;">*</b></td>
+      <td>
+        <select name='payment_time_hour' tabindex="7"><option value="">ชม.</option><option selected value="0">00</option><option value="1">01</option><option value="2">02</option><option value="3">03</option><option value="4">04</option><option value="5">05</option><option value="6">06</option><option value="7">07</option><option value="8">08</option><option value="9">09</option><option value="10">10</option><option value="11">11</option><option value="12">12</option><option value="13">13</option><option value="14">14</option><option value="15">15</option><option value="16">16</option><option value="17">17</option><option value="18">18</option><option value="19">19</option><option value="20">20</option><option value="21">21</option><option value="22">22</option><option value="23">23</option></select> : <select name='payment_time_min' tabindex="8"><option selected value="0">00</option><option value="1">01</option><option value="2">02</option><option value="3">03</option><option value="4">04</option><option value="5">05</option><option value="6">06</option><option value="7">07</option><option value="8">08</option><option value="9">09</option><option value="10">10</option><option value="11">11</option><option value="12">12</option><option value="13">13</option><option value="14">14</option><option value="15">15</option><option value="16">16</option><option value="17">17</option><option value="18">18</option><option value="19">19</option><option value="20">20</option><option value="21">21</option><option value="22">22</option><option value="23">23</option><option value="24">24</option><option value="25">25</option><option value="26">26</option><option value="27">27</option><option value="28">28</option><option value="29">29</option><option value="30">30</option><option value="31">31</option><option value="32">32</option><option value="33">33</option><option value="34">34</option><option value="35">35</option><option value="36">36</option><option value="37">37</option><option value="38">38</option><option value="39">39</option><option value="40">40</option><option value="41">41</option><option value="42">42</option><option value="43">43</option><option value="44">44</option><option value="45">45</option><option value="46">46</option><option value="47">47</option><option value="48">48</option><option value="49">49</option><option value="50">50</option><option value="51">51</option><option value="52">52</option><option value="53">53</option><option value="54">54</option><option value="55">55</option><option value="56">56</option><option value="57">57</option><option value="58">58</option><option value="59">59</option></select> น.
+        </td>
+    </tr>
+  -->
+    <tr id="id_scan_file_row" >
+      <td class="left">รูปภาพหลักฐานการโอนเงิน<div style="font-weight:normal;font-size:0.9em;"><span>*หากแนบไฟล์สลิปชำระเงินไม่ถูกต้องขอสงวนสิทธิ์ในการไม่จัดส่งสินค้าในทุกกรณี</span></div></td>
+      <td>
+        <form action="/payment" method="POST" enctype="multipart/form-data">
+          {% csrf_token %}
+          <p>Click on the "Choose File" button to upload a file:</p>
+          <input type="file" id="" name="payslipImage" accept="image/*" oninput="unlock()">
+          <p></p>
+          <button type="submit" id="lock" name="submit" class="btn btn-sm btn-default col-lg-12" disabled="true">submit</button>
+        </form>
+      </td>
+    </tr> 
+    {% endblock %}
+  </table>
+</div>
+</div>
 
-<form action="/action_page.php">
-  <input type="file" id="myImage" name="imagename" accept="image/*">
-  <a href="confirm" class="btn btn-light"> submit</a>
-</form>
-
-{% endblock %}
+  <!--
+  <h1>{{payslip.total_price|currency}}</h1>
+  <form action="/payment" method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    <p>Click on the "Choose File" button to upload a file:</p>
+    <input type="file" id="" name="payslipImage" accept="image/*">
+    <button type="submit" class="btn btn-sm btn-success col-lg-12">submit</button>
+</form>-->
