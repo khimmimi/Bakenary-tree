@@ -1,8 +1,18 @@
 {% extends 'base.html' %}
-
+{% load static %}
 
 {% block content %}
 {% load cart %}
 {% load custom_filter %}
-<h2 class="text-center">Thank you! For your payment</h2>
+
+<hr style="margin-top : 100px">
+<h2 class="text-center" style="margin-top : 50px; color: #5DC90A;">Thank you! For your payment</h2>
+<p class="text-center">Your order has been received, it's processing</p>
+<div class="text-center col">        
+    <img
+    src="{% static 'correct.png' %}"  alt=""
+    class="" style="height: 150px;">
+</div>
+<hr>
+
 {% endblock %}

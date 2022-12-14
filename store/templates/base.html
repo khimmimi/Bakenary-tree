@@ -11,9 +11,10 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
     integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
-  <title>E-commerce Website</title>
+  <title>Bakenary Tree</title>
 
   <style>
+    @import url('https://fonts.googleapis.com/css2?family=Kanit:wght@300&display=swap');
     nav{
       background-color: rgb(255, 255, 255);
     }
@@ -24,6 +25,47 @@
   font-weight: 200;
   font-size: 30px;
 }
+div {
+  font-family: 'Kanit', sans-serif
+} 
+.btn-outline-primary {
+    color: #212529;
+    background-color: transparent;
+    background-image: none;
+}
+
+.btn-outline-primary:hover {
+    color: #222;
+    background-color: transparent;
+    border-color: #006241;
+}
+
+.btn-outline-primary:focus,
+.btn-outline-primary.focus {
+    box-shadow: 0 0 0 .2rem #006241
+}
+
+.btn-outline-primary.disabled,
+.btn-outline-primary:disabled {
+    color: #7cc;
+    background-color: transparent
+}
+
+.btn-outline-primary:not(:disabled):not(.disabled):active,
+.btn-outline-primary:not(:disabled):not(.disabled).active,
+.show>.btn-outline-primary.dropdown-toggle {
+    color: #212529;
+    background-color: #006241;
+    border-color: #006241
+}
+
+.btn-outline-primary:not(:disabled):not(.disabled):active:focus,
+.btn-outline-primary:not(:disabled):not(.disabled).active:focus,
+.show>.btn-outline-primary.dropdown-toggle:focus {
+    box-shadow: 0 0 0 .2rem #006241
+}
+
+
   </style>
 </head>
 
@@ -35,10 +77,10 @@
   sticky-top navbar 
   navbar-expand-lg
   text-white">
-    <a class="navbar-brand ms-3 text-dark " href="/">
+    <a class="navbar-brand ms-3 text-dark " href="/" style="margin-right:0">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
 
-    <img src="https://www.freepnglogos.com/uploads/shopping-cart-png/shopping-cart-svg-png-icon-download-28.png" style="width:50px;height:50px;color:text-light;">E-Commerce</a>
+    <img src="{% static 'tree.jpg' %}" style="width:62px;height:50px;color:text-light;"></a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
       aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -48,7 +90,7 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav mr-auto">
         <li class="nav-item active">
-          <a class="nav-link" href="/store">Store <span class="sr-only">(current)</span></a>
+          <a class="nav-link" href="/store" style="font-size: 22px; ">Bakenary Tree <span class="sr-only">(current)</span></a>
         </li>
 
           </ul>
@@ -60,14 +102,14 @@
 
         <li class="nav-item active">
           <a class="nav-link" href="/cart">Cart 
-            <span class="badge badge-success">{{request.session.cart.keys|length}}</span>
+            <span class="badge badge-pill badge-dark" style="background-color: #006241;">{{request.session.cart.keys|length}}</span>
             <span class="sr-only">(current)</span></a>
         </li>
 
         {% if request.session.customer %}
         
         <li class="nav-item active ">
-          <a class="nav-link" href="/orders"><img border="0" alt="user information" src="{% static 'user.png' %}" width="18" height="18" ></a>
+          <a class="nav-link" href="/user"><img border="0" alt="user information" src="{% static 'user.png' %}" width="18" height="18" ></a>
         </li>
         <li class="nav-item active ">
           <a class="nav-link" href="/logout">Logout<span class="sr-only">(current)</span></a>

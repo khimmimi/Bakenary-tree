@@ -8,20 +8,19 @@ from .views.signup import Signup
 from .views.login import Login , logout
 from .views.cart import Cart
 from .views.checkout import CheckOut
-from .views.orders import OrderView
+from .views.user import UserView
 from .middlewares.auth import  auth_middleware
 
 
 urlpatterns = [
     path('', Index.as_view(), name='homepage'),
     path('store', store , name='store'),
-
     path('signup', Signup.as_view(), name='signup'),
     path('login', Login.as_view(), name='login'),
     path('logout', logout , name='logout'),
     path('cart', auth_middleware(Cart.as_view()) , name='cart'),
     path('check-out', CheckOut.as_view() , name='checkout'),
-    path('orders', auth_middleware(OrderView.as_view()), name='orders'),
+    path('user', auth_middleware(UserView.as_view()), name='user'),
     path('payment', Payment.as_view(), name='payment'),
     path('confirm',Confirm.as_view(), name='confirm')
 

@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-
+{% load static %}
 
 {% block content %}
 
@@ -12,7 +12,7 @@
             <div class="text-center col">
             
                 <img
-                src="https://th.bing.com/th/id/Rd51d7c0fde6d96a31538a86cbd57f3c0?rik=%2fTJxRkU2V371QQ&riu=http%3a%2f%2ftechnologyend.com%2fwp-content%2fuploads%2f2015%2f11%2fwhy-shop-online.jpg&ehk=v1KiYT0i5U1ABCRueDSdLqnazh2BdlVD89Z4qXE0Kgs%3d&risl=&pid=ImgRaw" alt=""
+                src="{% static 'Balck.png' %}" alt=""
                 class="" style="height: 150px;">
             <!-- <hr> -->
             <hr>
@@ -31,8 +31,8 @@
                 <div class="form-group">
                     <label for="">First Name</label>
                     <input type="text" name="firstname"
-                     id="" value="{{values.first_name}}" class="form-control form-control-sm" 
-                     placeholder="">
+                        id="" value="{{values.first_name}}" class="form-control form-control-sm" 
+                        placeholder="">
                 </div>
 
                 <!-- last name -->
@@ -71,12 +71,14 @@
                 </div>
 
                 <!--Checkme button-->
+                <!--
                 <div class="mb-3 form-check">
                     <input type="checkbox" class="form-check-input" id="exampleCheck1">
                     <label class="form-check-label d-grid gap-2" for="exampleCheck1">Check me out</label>
-                </div>
+                </div>-->
+                <br>
                 <hr>
-                <button type="submit" class="btn btn-sm btn-success col-lg-12">Create an account</button>
+                <button type="submit" class="btn btn-sm btn-success col-lg-12" style="background-color: #006241 !important;border-color: #006241 !important; color: white;margin-bottom: 15px;">Create an account</button>
 
             </form>
         </div>

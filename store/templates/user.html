@@ -4,10 +4,12 @@
 {% block content %}
 {% load cart %}
 {% load custom_filter %}
+<style>
+    p {font-size: 30px;}
+    </style>
 <div class="container">
    <div class="border rounded p-4 m-4">
-    <p>{{user.first_name}} </p>
-        <p class="display-4 pl-4 ml-4">Your Orders</p>
+        <p class="display-4 pl-4 ml-4">{{user.first_name}}'s orders</p>
         <hr>
         <table class="table">
             <thead>
